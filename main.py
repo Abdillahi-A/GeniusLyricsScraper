@@ -31,9 +31,12 @@ def checkArtistExists(artist):
     return True
 
 def getLyrics(artist, songTitle):
-    soup = turnToSoup(f'https://genius.com/{artist}-{songTitle}-lyrics')
-    lyrics = soup.find('p').text
-    print(f'\n\n{lyrics}')
+    if not checkStatus(f'https://genius.com/{artist}-{songTitle}-lyrics'):
+        print(f"\nSorry, we couldn't find any lyrics for - {songTitle}")
+    else:
+        soup = turnToSoup(f'https://genius.com/{artist}-{songTitle}-lyrics')
+        lyrics = soup.find('p').text
+        print(f"\nHere are your lyrics for {songTitle.title()} by {artist.replace('-',' ').title()}:\n\n{lyrics}")
 
 def main():
     artist, songTitle = getUserInput()
