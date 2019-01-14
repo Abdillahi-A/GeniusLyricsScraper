@@ -36,7 +36,7 @@ def getLyrics(artist, songTitle):
     else:
         soup = turnToSoup(f'https://genius.com/{artist}-{songTitle}-lyrics')
         lyrics = soup.find('p').text
-        print(f"\nHere are your lyrics for {songTitle.title()} by {artist.replace('-',' ').title()}:\n\n{lyrics}")
+        print(f"\nHere are your lyrics for {songTitle.title().replace('-',' ')} by {artist.replace('-',' ').title()}:\n\n{lyrics}")
 
 def main():
     artist, songTitle = getUserInput()
